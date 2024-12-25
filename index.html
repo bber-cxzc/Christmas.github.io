@@ -18,6 +18,30 @@
     />
   </head>
   <body>
+    <div class="advanced-audio-player">
+      <audio id="myAudio" controls>
+        <source src="audio/Mistletoe.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <script>
+      var audio = document.getElementById('myAudio');
+      var tracks = ['track1.mp3', 'track2.mp3', 'track3.mp3'];
+      var currentTrackIndex = 0;
+
+      function playTrack(track) {
+        audio.src = track;
+        audio.play();
+      }
+
+      audio.addEventListener('ended', function() {
+        if (!audio.loop) {
+          currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+          playTrack(tracks[currentTrackIndex]);
+        }
+      });
+    </script>
     <div class="santa-container">
       <svg
         data-name="Layer 1"
